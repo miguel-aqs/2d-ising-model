@@ -23,8 +23,8 @@ This project is built using standard Python and requires the following external 
 
 ## Credits
 
-Credit to Revimime for compiling the research into molecular thermodynamics and ferromagnetism.
-Credit to Mulletgoneviral for the rickrolls and slandering macbooks.
+* Credit to Revimime for compiling the research into molecular thermodynamics and ferromagnetism.
+* Credit to Mulletgoneviral for the rickrolls and slandering macbooks.
 
 ## Learn More
 Read more about the physics [here](https://en.wikipedia.org/wiki/Ising_model).
