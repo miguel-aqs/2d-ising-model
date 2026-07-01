@@ -9,6 +9,7 @@ The parameters that can be easily adjusted in `ising.py` are:
 * **Grid size** (Resolution of the atomic lattice)
 * **Steps per frame** (Math steps calculated before updating the screen)
 * **Temperature** (`T`)
+* **Show graph** (Toggleable)
 
 ## History
 
@@ -20,6 +21,16 @@ In 1944, Lars Onsager solved the 2D Ising model, finding the critical temperatur
 This project is built using standard Python and requires the following external libraries:
 * **NumPy** - For efficient multidimensional grid manipulation and math.
 * **Matplotlib** - For handling the live, real-time GUI animation.
+
+## Changelog
+### [June 30, 2026]
+* Built the main Metropolis algorithm
+* Created the grid from a NumPy and Matplotlib array
+* Used `animation.FuncAnimation` to display the changing spin configurations live.
+
+### [July 1, 2026]
+* Added a toggleable graph feature to show net magnetization of the lattice grid with real-time history.
+* Optimized with Matplotlib's blit engine.
 
 ## Credits
 
