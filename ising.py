@@ -35,7 +35,7 @@ def get_net_magnetization(spins):
 
 """---CONFIG STUFF---"""
 grid_size = 100
-T = 2.269
+T = 1
 steps_per_frame = 50000
 graph_length = 100
 show_graph = True
@@ -57,6 +57,7 @@ width_ratios = [1, 1] if show_graph else [1]
 
 
 fig = plt.figure(figsize=(11 if show_graph else 6, 6 if show_slider else 5.5))
+fig.canvas.manager.set_window_title('2D Ising Model Simulation')
 gs = fig.add_gridspec(num_rows, num_cols, 
                       width_ratios=width_ratios, 
                       height_ratios=height_ratios, 
@@ -71,6 +72,8 @@ if show_graph:
     ax2.set_xlim(0, graph_length)
     ax2.get_xaxis().set_visible(False)
     ax2.set_ylim(-1.1, 1.1)
+
+    graph_title = ax2.set_title("Net Magnetization", fontsize=10)
 
 if show_slider:
     ax_slider = fig.add_subplot(gs[1, :])  # Slider spans the bottom row, if it exists
