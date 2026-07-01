@@ -8,7 +8,7 @@ Each atom on the grid tends toward the action of least energy. At low temperatur
 
 Raising the temperature past a certain critical temperature dissolves the magnetic structure into high-entropy, uncorrelated static flipping back and forth as thermal energy is injected, overpowering magnetic bonds.
 
-These probabilities are governed by the Boltzmann distribution, through a Hamiltonian.
+These probabilities are governed by the Boltzmann distribution, through a Hamiltonian. This Hamiltonian takes the form of a Metropolis algorithm in the code.
 
 In 1944, Lars Onsager solved the 2D Ising model, finding the critical temperature at which the magnet loses its ferromagnetism to be at roughly `T ≈ 2.269`.
 
@@ -20,6 +20,14 @@ The parameters that can be easily adjusted in `ising.py` are:
 * **Steps per frame** (Math steps calculated before updating the screen)
 * **Temperature** (`T`)
 * **Show graph** (Toggleable)
+
+## Recommended Settings
+Note that this was made on a laptop, so has that level of hardware in mind.
+
+* **For a smooth UI:** Use a `100x100` to `150x150` grid size with `40,000` to `50,000` maximum steps per frame.
+* **For deep data/large clusters:** Bump steps up to `100,000` (expect minor frame lag depending on your CPU).
+* **If the slider feels laggy:** Simply lower `steps_per_frame` until the UI runs smoothly.
+* Hiding the slider and/or graph can also allow larger grid sizes or steps per frame.
 
 ## Dependencies
 This project is built using standard Python and requires the following external libraries:
