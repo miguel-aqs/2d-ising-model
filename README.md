@@ -27,6 +27,8 @@ This project is built using standard Python and requires the following external 
 ### [July 1, 2026]
 * Added a toggleable graph feature to show net magnetization of the lattice grid with real-time history.
 * Optimized with Matplotlib's blit engine.
+* Added a toggleable slider for temperature.
+* Revamped GUI organization code.
 
 ### [June 30, 2026]
 * Built the main Metropolis algorithm
