@@ -1,6 +1,6 @@
 # 2D Ising Model - Monte Carlo Simulation
 
-> First of all, it's pronounced "EE-zing" not "EYE-zing" technically but no one seems to care.
+> First of all, it's technically pronounced "EE-zing" not "EYE-zing" but no one seems to care.
 
 This is a simple Monte Carlo Markov Chain simulation made with the intent to model magnets as a large grid of cells, each representing an atom's individual 'spin' or what can be thought of as magnetic charge.
 
@@ -41,6 +41,7 @@ This project is built using standard Python and requires the following external 
 * Optimized with Matplotlib's blit engine.
 * Added a toggleable slider for temperature.
 * Revamped GUI organization code.
+* Minor QoL updates.
 
 ### [June 30, 2026]
 * Built the main Metropolis algorithm
