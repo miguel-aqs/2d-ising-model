@@ -23,14 +23,16 @@ This project is built using standard Python and requires the following external 
 * **Matplotlib** - For handling the live, real-time GUI animation.
 
 ## Changelog
+
+### [July 1, 2026]
+* Added a toggleable graph feature to show net magnetization of the lattice grid with real-time history.
+* Optimized with Matplotlib's blit engine.
+
 ### [June 30, 2026]
 * Built the main Metropolis algorithm
 * Created the grid from a NumPy and Matplotlib array
 * Used `animation.FuncAnimation` to display the changing spin configurations live.
 
-### [July 1, 2026]
-* Added a toggleable graph feature to show net magnetization of the lattice grid with real-time history.
-* Optimized with Matplotlib's blit engine.
 
 ## Credits
 
