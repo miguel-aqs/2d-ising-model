@@ -2,6 +2,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+from matplotlib.widgets import Slider
 
 def init_lattice(N):
     spins = np.random.choice([-1, 1], size=(N, N))
@@ -34,10 +35,11 @@ def get_net_magnetization(spins):
 
 """---CONFIG STUFF---"""
 grid_size = 100
-T = 4
+T = 2.269
 steps_per_frame = 50000
 graph_length = 100
 show_graph = True
+show_slider = True
 
 """------------------"""
 
@@ -46,26 +48,42 @@ show_graph = True
 
 grid1 = init_lattice(grid_size)
 
-if show_graph == True:
-    mag_history = []
+mag_history = []
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+num_cols = 2 if show_graph else 1
+num_rows = 2 if show_slider else 1
+height_ratios = [20, 1] if show_slider else [1]
+width_ratios = [1, 1] if show_graph else [1]
 
+
+fig = plt.figure(figsize=(11 if show_graph else 6, 6 if show_slider else 5.5))
+gs = fig.add_gridspec(num_rows, num_cols, 
+                      width_ratios=width_ratios, 
+                      height_ratios=height_ratios, 
+                      wspace=0.3, hspace=0.4)
+
+
+ax1 = fig.add_subplot(gs[0, 0])  # Grid is always top-left
+
+if show_graph:
+    ax2 = fig.add_subplot(gs[0, 1])  # Graph is top-right
     line, = ax2.plot([], [], color='black')
-
-
     ax2.set_xlim(0, graph_length)
     ax2.get_xaxis().set_visible(False)
     ax2.set_ylim(-1.1, 1.1)
-else:
-    fig, (ax1) = plt.subplots(figsize=(6, 6))
+
+if show_slider:
+    ax_slider = fig.add_subplot(gs[1, :])  # Slider spans the bottom row, if it exists
+    t_slider = Slider(ax_slider, 'Temperature (T)', 0.1, 5.0, valinit=T, valfmt='%1.2f')
 
 im = ax1.imshow(grid1, cmap='gray', vmin=-1, vmax=1)
-#tx = ax2.set_title(get_net_magnetization(grid1))
 
 def update(frame):
+
+    current_T = t_slider.val if show_slider else T
+    
     for _ in range(steps_per_frame):
-        metropolis(grid1, grid_size, T)
+        metropolis(grid1, grid_size, current_T)
     
     im.set_data(grid1)
 
