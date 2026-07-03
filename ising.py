@@ -3,9 +3,25 @@ import random
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.widgets import Slider
+from matplotlib.colors import ListedColormap
+
+"""---CONFIG STUFF---"""
+grid_size = 100
+pctg_impurities = 0.2
+T = 1
+steps_per_frame = 50000
+graph_length = 100
+show_graph = True
+show_slider = True
+
+"""------------------"""
+
+p_spin = (1 - pctg_impurities) / 2
+colors = ["blue", "black", "red"]
+custon_cmap = ListedColormap(colors)
 
 def init_lattice(N):
-    spins = np.random.choice([-1, 1], size=(N, N))
+    spins = np.random.choice([0, -1, 1], size=(N, N), p=[pctg_impurities, p_spin, p_spin])
     return spins
 
 def get_neighbors_sum(spins, i, j, N):
@@ -21,6 +37,9 @@ def metropolis(spins, N, T, J=1.0):
     i = random.randint(0, N-1)
     j = random.randint(0, N-1)
 
+    if spins[i, j] == 0:
+        return
+
     current_spin = spins[i, j]
     neighbors_sum = get_neighbors_sum(spins, i, j, N)
 
@@ -30,18 +49,10 @@ def metropolis(spins, N, T, J=1.0):
         spins[i, j] *= -1
 
 def get_net_magnetization(spins):
-    return np.mean(spins)
+    active_spins = spins[spins != 0]
+    return np.mean(active_spins) if len(active_spins) != 0 else 0.0
 
 
-"""---CONFIG STUFF---"""
-grid_size = 100
-T = 1
-steps_per_frame = 50000
-graph_length = 100
-show_graph = True
-show_slider = True
-
-"""------------------"""
 
 
 #note that -1 is black and 1 is white
@@ -79,7 +90,7 @@ if show_slider:
     ax_slider = fig.add_subplot(gs[1, :])  # Slider spans the bottom row, if it exists
     t_slider = Slider(ax_slider, 'Temperature (T)', 0.1, 5.0, valinit=T, valfmt='%1.2f')
 
-im = ax1.imshow(grid1, cmap='gray', vmin=-1, vmax=1)
+im = ax1.imshow(grid1, cmap=custon_cmap, vmin=-1, vmax=1)
 
 def update(frame):
 
@@ -97,6 +108,9 @@ def update(frame):
         line.set_data(range(len(mag_history)), mag_history)
         if len(mag_history) > 100:
             ax2.set_xlim(0, len(mag_history))
+        
+        graph_title.set_text("Net Magnetization (M):")
+
         return [im, line]
     else:
         return [im]
