@@ -17,9 +17,11 @@ In 1944, Lars Onsager solved the 2D Ising model, finding the critical temperatur
 ## Parameters
 The parameters that can be easily adjusted in `ising.py` are:
 * **Grid size** (Resolution of the atomic lattice)
+* **Impurities** (Probability of each cell having a spin of 0)
 * **Steps per frame** (Math steps calculated before updating the screen)
 * **Temperature** (`T`)
 * **Show graph** (Toggleable)
+* **Show slider*** (Toggleable)
 
 ## Recommended Settings
 Note that this was made on a laptop, so has that level of hardware in mind.
@@ -35,6 +37,11 @@ This project is built using standard Python and requires the following external 
 * **Matplotlib** - For handling the live, real-time GUI animation.
 
 ## Changelog
+
+### [July 3, 2026 - Unreleased]
+* Introduced quenched disorder via a site-vacancy impurity protocol (`pctg_impurities`).
+* Changed black-white color scheme to blue-red-black (black for impurities) for clear domiain wall tracking.
+* Updated `get_net_magnetization` calculation to dynamically filter out impurity sites, preventing baseline data skewing.
 
 ### [July 1, 2026]
 * Added a toggleable graph feature to show net magnetization of the lattice grid with real-time history.
